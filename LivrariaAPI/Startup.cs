@@ -1,3 +1,5 @@
+using AutoMapper;
+using LivrariaAPI.Data.Dtos;
 using LivrariaAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,14 +26,16 @@ namespace LivrariaAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ToDoContext>(opt => opt.UseInMemoryDatabase(databaseName:"ToDoProducts"));
+            services.AddDbContext<LivrariaContext>(opt => opt.UseMySQL(Configuration.GetConnectionString("LivroConnection")));
+            services.AddAutoMapper();
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

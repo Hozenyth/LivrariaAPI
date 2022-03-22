@@ -1,8 +1,12 @@
-﻿namespace LivrariaAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LivrariaAPI.Models
 {
-    public class Produto
+    public class Livro
     {
-        public string ProdutoId { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
         public string Nome { get; set; }
         public double Preco { get; set; }
         public int Quantidade { get; set; }
